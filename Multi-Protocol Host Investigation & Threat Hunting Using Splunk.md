@@ -1,0 +1,93 @@
+Multi-Protocol Host Investigation & Threat Hunting Using Splunk
+
+This project demonstrates a host-centric threat hunting investigation using Splunk and Zeek network telemetry. Rather than analyzing a single protocol in isolation, I pivoted on an internal host IP address (192.168.202.110) and correlated activity across multiple network data sources to build a comprehensive profile of system behavior.
+
+The investigation focused on identifying how the host interacted with the network through DHCP, DNS, HTTP, and SSH communications. By aggregating activity from multiple Zeek log sources, I was able to establish protocol usage patterns, validate network presence, and demonstrate practical SOC investigation techniques used during security monitoring and incident response.
+
+## Objectives
+
+- Perform a host-centric investigation using Splunk
+- Correlate activity across multiple Zeek log sources
+- Identify protocol distribution for a single endpoint
+- Demonstrate cross-protocol threat hunting techniques
+- Build a network activity profile for an internal host
+
+## Data Sources
+
+- Zeek DHCP Logs
+- Zeek DNS Logs
+- Zeek HTTP Logs
+- Zeek SSH Logs
+
+## SPL Query Used
+
+index=main "192.168.202.110"
+| stats count by sourcetype
+| sort - count
+
+## Investigation Results
+
+| Sourcetype | Event Count |
+|------------|------------:|
+| zeek_dhcp | 67,885 |
+| zeek_http | 67,850 |
+| zeek_dns | 14,493 |
+| dns.log | 14,488 |
+| zeek_ssh | 986 |
+
+## Analysis
+
+### DHCP Activity
+The host generated a significant volume of DHCP events, confirming continuous network participation and lease-related communications.
+
+### HTTP Activity
+HTTP traffic accounted for a substantial portion of observed activity, indicating frequent web communications and network interactions.
+
+### DNS Activity
+Thousands of DNS events were identified, providing visibility into name resolution behavior and external service access patterns.
+
+### SSH Activity
+SSH events revealed remote access activity that could be further investigated during incident response or threat hunting operations.
+
+## Key Findings
+
+- Successfully correlated multiple protocols for a single host
+- Built a complete network activity profile using Splunk
+- Demonstrated practical host-based threat hunting methodology
+- Identified protocol usage patterns across the environment
+- Showcased cross-log source analysis techniques used by SOC analysts
+
+## Security Value
+
+Host-centric investigations are essential for:
+
+- Threat hunting
+- Incident response
+- Network visibility
+- Endpoint behavior analysis
+- Lateral movement investigations
+- Security monitoring and detection
+
+## Tools Used
+
+- Splunk Enterprise
+- Zeek Network Security Monitor
+- Kali Linux
+- Search Processing Language (SPL)
+
+## Skills Demonstrated
+
+- Threat Hunting
+- SIEM Operations
+- Log Analysis
+- Network Traffic Analysis
+- Security Monitoring
+- Incident Investigation
+- DNS Analysis
+- HTTP Analysis
+- SSH Analysis
+- DHCP Analysis
+- Cybersecurity Operations
+## Conclusion
+
+This project demonstrated how a single endpoint can be investigated across multiple protocols using Splunk and Zeek telemetry. By correlating DHCP, DNS, HTTP, and SSH events, I successfully built a comprehensive host activity profile and applied practical threat hunting techniques commonly used in modern Security Operations Centers (SOC).
