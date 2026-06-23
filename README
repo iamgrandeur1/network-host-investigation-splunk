@@ -1,4 +1,4 @@
-Multi-Protocol Host Investigation & Threat Hunting Using Splunk
+# Multi-Protocol Host Investigation & Threat Hunting Using Splunk
 
 This project demonstrates a host-centric threat hunting investigation using Splunk and Zeek network telemetry. Rather than analyzing a single protocol in isolation, I pivoted on an internal host IP address (192.168.202.110) and correlated activity across multiple network data sources to build a comprehensive profile of system behavior.
 
